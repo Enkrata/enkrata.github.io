@@ -1,0 +1,168 @@
+/* Enkrata site styles.
+ *
+ * The token block below is copied from brand/tokens.css in
+ * github.com/Enkrata/enkrata-workspace, which is the source of truth. Change it
+ * there first, then mirror it here — do not diverge.
+ *
+ * Contrast is measured, not eyeballed: every text role clears 4.5:1 against both
+ * the page ground and the raised surface. Three combinations that look fine and
+ * are not: pine on pine-black 2.10:1, brass on bone 2.99:1, sage on bone 4.07:1.
+ *
+ * Type: the brand specifies Jost for display and IBM Plex Sans for body. Neither
+ * is served here yet — self-hosting is pending, and loading them from a font CDN
+ * would send visitors' IPs to a third party, which this site's own privacy policy
+ * says it does not do. Until then the fallback stacks below do the work.
+ */
+
+:root {
+  --ek-bg: #F6F4EF;
+  --ek-surface: #FFFFFF;
+  --ek-ink: #12211C;
+  --ek-muted: #626D67;
+  --ek-accent: #1E5B4A;
+  --ek-accent-strong: #17483A;
+  --ek-brass-ink: #8C6A1E;
+  --ek-rule: #E3DFD5;
+  --ek-rule-strong: #D2CDBF;
+
+  --ek-font-display: Jost, Futura, "Century Gothic", ui-sans-serif, system-ui, sans-serif;
+  --ek-font-body: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ek-font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ek-bg: #12211C;
+    --ek-surface: #1A2C26;
+    --ek-ink: #F6F4EF;
+    --ek-muted: #8B968F;
+    --ek-accent: #46A88A;
+    --ek-accent-strong: #5CC0A2;
+    --ek-brass-ink: #B89031;
+    --ek-rule: #24382F;
+    --ek-rule-strong: #33493F;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ek-bg: #12211C;
+  --ek-surface: #1A2C26;
+  --ek-ink: #F6F4EF;
+  --ek-muted: #8B968F;
+  --ek-accent: #46A88A;
+  --ek-accent-strong: #5CC0A2;
+  --ek-brass-ink: #B89031;
+  --ek-rule: #24382F;
+  --ek-rule-strong: #33493F;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+body {
+  background: var(--ek-bg);
+  color: var(--ek-ink);
+  font-family: var(--ek-font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* --- masthead ---------------------------------------------------------- */
+/* Gap is the brand's clear-space rule, not a taste call: nothing may come
+   closer to the lockup than half the mark's height. At the 15rem lockup used
+   on the landing page the mark is ~41px tall, so 1.5rem (24px) is the floor. */
+.masthead { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.lockup { display: block; width: 100%; max-width: 15rem; height: auto; color: var(--ek-accent); }
+.lockup-sm { max-width: 10.5rem; }
+
+/* The lockup carries the name, so the h1 is present for structure and screen
+   readers without being painted twice. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.tagline {
+  font-family: var(--ek-font-display);
+  font-size: 1.15rem;
+  letter-spacing: .005em;
+  color: var(--ek-muted);
+}
+
+.crumb {
+  font-family: var(--ek-font-mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ek-brass-ink);
+}
+
+/* --- headings and prose ------------------------------------------------ */
+h1.title, h2 {
+  font-family: var(--ek-font-display);
+  font-weight: 500;
+  letter-spacing: -.005em;
+  text-wrap: balance;
+}
+h1.title { font-size: 2.1rem; line-height: 1.25; }
+h2 { font-size: 1.2rem; }
+
+.prose { display: flex; flex-direction: column; gap: 1.1rem; }
+.section { display: flex; flex-direction: column; gap: .7rem; }
+.date { color: var(--ek-muted); font-size: .92rem; }
+
+a { color: var(--ek-accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--ek-accent-strong); }
+a:focus-visible { outline: 2px solid var(--ek-accent); outline-offset: 2px; border-radius: 2px; }
+
+strong { font-weight: 600; }
+
+/* --- the one card on the site: what's being built ---------------------- */
+.now {
+  background: var(--ek-surface);
+  border: 1px solid var(--ek-rule);
+  border-radius: 12px;
+  padding: 1.5rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.now h3 { font-family: var(--ek-font-display); font-size: 1.3rem; font-weight: 500; }
+.now h3 a { text-decoration: none; }
+.now h3 a:hover { text-decoration: underline; }
+.now .status {
+  font-family: var(--ek-font-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ek-brass-ink);
+}
+
+.rule { border: 0; border-top: 1px solid var(--ek-rule); }
+
+footer {
+  color: var(--ek-muted);
+  font-size: .85rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+footer a { color: var(--ek-muted); }
+footer a:hover { color: var(--ek-accent); }
+
+@media (max-width: 30rem) {
+  body { font-size: 16px; }
+  h1.title { font-size: 1.75rem; }
+}
