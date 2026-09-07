@@ -166,3 +166,56 @@ footer a:hover { color: var(--ek-accent); }
   body { font-size: 16px; }
   h1.title { font-size: 1.75rem; }
 }
+
+/* ---------------------------------------------------------------- shots
+ * Screenshots of a pixel-art game. `image-rendering: pixelated` is not a
+ * flourish here: the art is authored on a tile grid (art direction §4), and
+ * a browser's default smooth scaling turns a crisp 20px tile into mush at
+ * any width that is not an exact multiple.
+ */
+.shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: 1.4rem;
+  margin-top: .4rem;
+}
+.shot { display: flex; flex-direction: column; gap: .55rem; }
+.shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--ek-rule-strong);
+  border-radius: 6px;
+  background: #0E1224;
+  image-rendering: pixelated;
+}
+.shot figcaption { color: var(--ek-muted); font-size: .92rem; line-height: 1.5; }
+
+/* ------------------------------------------------------------------ log */
+.log { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.log li { display: flex; flex-direction: column; gap: .2rem; }
+.log .ver {
+  font-family: var(--ek-font-mono);
+  font-size: .8rem;
+  letter-spacing: .06em;
+  color: var(--ek-brass-ink);
+}
+.log p { font-size: .96rem; }
+
+/* ------------------------------------------------------------- beta cta */
+.cta {
+  display: inline-block;
+  align-self: flex-start;
+  padding: .6rem 1.15rem;
+  border-radius: 6px;
+  background: var(--ek-accent);
+  color: var(--ek-bg);
+  font-weight: 600;
+  text-decoration: none;
+}
+.cta:hover { background: var(--ek-accent-strong); text-decoration: none; }
+
+/* The hero shot is a PHONE screenshot, so it is capped to phone width rather
+ * than run full-bleed: at 800px wide a 603x1211 image is a wall the reader has
+ * to scroll past before reaching a single word about the game. */
+.hero { max-width: 300px; margin: 1.8rem 0 .4rem; }
