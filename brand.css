@@ -109,6 +109,61 @@ body {
   color: var(--ek-brass-ink);
 }
 
+/* --- the machine layer -------------------------------------------------- */
+/* Plex Mono is the voice of the machinery around the content: geometry
+   callouts, build stamps, section labels (brand/README.md section 8). It
+   annotates and never speaks — nothing a reader must read to understand the
+   page is set in it. Muted is its colour; .crumb and .now .status stay brass
+   because they carry an earned state rather than an annotation. */
+.machine {
+  font-family: var(--ek-font-mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ek-muted);
+  line-height: 1.6;
+}
+
+/* A commit sha is lowercase hex — uppercasing it misstates the string. */
+.machine .sha { text-transform: none; }
+
+/* --- the construction language ------------------------------------------ */
+/* A bracketed plate: the dither ground behind, crop marks at the corners, and
+   the content on a solid surface above it. Both assets come from brand/plate/
+   in enkrata-workspace and are drawn in currentColor, which an external SVG
+   cannot see through background-image — so they are masks with the ink set as
+   background-color, which is the documented recipe. Both are decoration and
+   carry aria-hidden. */
+.plate { position: relative; padding: 18px; }
+
+.plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: url("/plate/dither-12.svg");
+          mask-image: url("/plate/dither-12.svg");
+  -webkit-mask-size: 8px 8px;
+          mask-size: 8px 8px;
+  background-color: var(--ek-rule-strong);
+}
+
+.plate > * { position: relative; }
+
+.cm {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  -webkit-mask-image: url("/plate/corner.svg");
+          mask-image: url("/plate/corner.svg");
+  -webkit-mask-size: 16px 16px;
+          mask-size: 16px 16px;
+  background-color: var(--ek-muted);
+}
+.cm-tl { top: 0; left: 0; }
+.cm-tr { top: 0; right: 0; transform: rotate(90deg); }
+.cm-br { bottom: 0; right: 0; transform: rotate(180deg); }
+.cm-bl { bottom: 0; left: 0; transform: rotate(270deg); }
+
 /* --- headings and prose ------------------------------------------------ */
 h1.title, h2 {
   font-family: var(--ek-font-display);

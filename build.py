@@ -1,9 +1,37 @@
 #!/usr/bin/env python3
 """Assemble the Enkrata site pages from a shared head template and the brand
 lockup, so head tags and the mark cannot drift between pages."""
-import os
+import os, subprocess, datetime
 
 HEAD = open("_head.tmpl").read().strip()
+
+
+def stamp():
+    """The footer's machine line. It names the commit the page was generated
+    from, so building and committing together leaves the stamp one commit
+    behind — that is the honest reading of it, not a bug. No git, no sha."""
+    today = datetime.date.today().isoformat()
+    try:
+        sha = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
+                             capture_output=True, text=True, check=True).stdout.strip()
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return f"Built {today}"
+    return f'Built {today} &middot; <span class="sha">{sha}</span>'
+
+
+STAMP = f'<p class="machine">{stamp()}</p>'
+
+# The mark's own construction, stated next to it — the same numbers the
+# wallpaper plate draws and brand-build.py works from.
+GEOMETRY = '<p class="machine">R 32 &middot; Stroke 10 &middot; Opening 110&deg;</p>'
+
+# The studio's construction language stays on the studio's own page. Undercrew
+# wears its own world (brand/README.md section 4), so its pages take the
+# machine layer — studio typography — and not the plate.
+PLATE_MARKS = ('<span class="cm cm-tl" aria-hidden="true"></span>'
+               '<span class="cm cm-tr" aria-hidden="true"></span>'
+               '<span class="cm cm-br" aria-hidden="true"></span>'
+               '<span class="cm cm-bl" aria-hidden="true"></span>')
 LOCKUP = open("_lockup.frag").read().strip()
 
 def head(title, desc, path):
@@ -34,6 +62,7 @@ index_body = f"""
   {lock}
   <h1 class="sr-only">Enkrata</h1>
   <p class="tagline">Hard work on things that matter.</p>
+  {GEOMETRY}
 </header>
 
 <div class="prose">
@@ -47,17 +76,21 @@ index_body = f"""
 
 <section class="section">
   <h2>Now building</h2>
-  <div class="now">
-    <span class="status">In beta on TestFlight</span>
-    <h3><a href="/undercrew/">Undercrew</a></h3>
-    <p>A Terraria-deep 2D sandbox you never directly play. You run the crew of
-    agents that plays it, from your phone.</p>
+  <div class="plate">
+    {PLATE_MARKS}
+    <div class="now">
+      <span class="status">In beta on TestFlight</span>
+      <h3><a href="/undercrew/">Undercrew</a></h3>
+      <p>A Terraria-deep 2D sandbox you never directly play. You run the crew
+      of agents that plays it, from your phone.</p>
+    </div>
   </div>
 </section>
 
 <hr class="rule">
 <footer>
   <p>&copy; 2026 Enkrata &middot; <a href="https://github.com/Enkrata">GitHub</a></p>
+  {STAMP}
 </footer>
 """
 
@@ -99,6 +132,7 @@ undercrew_body = f"""
 <footer>
   <p><a href="/undercrew/privacy.html">Privacy policy</a> &middot;
   An <a href="/">Enkrata</a> game &middot; &copy; 2026 Enkrata</p>
+  {STAMP}
 </footer>
 """
 
@@ -165,6 +199,7 @@ privacy_body = f"""
 <footer>
   <p><a href="/undercrew/">Undercrew</a> &middot; An <a href="/">Enkrata</a>
   game &middot; &copy; 2026 Enkrata</p>
+  {STAMP}
 </footer>
 """
 
