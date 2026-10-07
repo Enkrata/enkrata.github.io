@@ -75,7 +75,7 @@ index_body = f"""
 </div>
 
 <section class="section">
-  <h2>Now building</h2>
+  <h2>In beta</h2>
   <div class="plate">
     {PLATE_MARKS}
     <div class="now">
