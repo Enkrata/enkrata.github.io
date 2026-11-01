@@ -85,6 +85,15 @@ index_body = f"""
       of agents that plays it, from your phone.</p>
     </div>
   </div>
+  <div class="plate" style="margin-top:16px">
+    {PLATE_MARKS}
+    <div class="now">
+      <span class="status">In beta on TestFlight</span>
+      <h3><a href="/wildhold/">Wildhold</a></h3>
+      <p>A pixel-art zoo game for Mac, iPad and iPhone that you run like a
+      ledger and a studbook: the business, the genetics, the numbers.</p>
+    </div>
+  </div>
 </section>
 
 <hr class="rule">
@@ -203,6 +212,148 @@ privacy_body = f"""
 </footer>
 """
 
+# --------------------------------------------------------------- wildhold
+# Wildhold wears its own world too: the art is the game's own voxel render
+# (wildhold repo, scripts/marketing/keyart.py, decision 0081), copied here.
+# This page is the App Store marketing and support URL.
+PIXEL_IMG = 'style="display:block;width:100%;height:auto;image-rendering:pixelated"'
+
+wildhold_body = f"""
+<header class="masthead">
+  <a href="/" aria-label="Enkrata home">{lock_sm}</a>
+  <h1 class="title">Wildhold</h1>
+  <p class="tagline">Your zoo, your ledger, your legacy.</p>
+</header>
+
+<img src="/wildhold/art/key-art-1920x1080.png" width="1920" height="1080" {PIXEL_IMG}
+  alt="Wildhold key art: a block-built savanna zoo in pixel art, with giraffes, zebras and elephants under a gold wordmark.">
+
+<div class="prose">
+  <p>Wildhold is a zoo you run like a ledger and a studbook. Start with an
+  empty plot and a bank loan, lay out exhibits block by block, and close
+  every month with a report: what each exhibit earned and cost, who was
+  born, who died, and why the guests came or didn't.</p>
+
+  <p>Every animal carries real genes. Keep the studbook, pair animals to keep
+  inbreeding down, watch for the rare coats real populations throw, and breed
+  at-risk species well enough to release them to the wild. Six biomes, forty
+  species, one honest balance sheet. For Mac, iPad and iPhone.</p>
+</div>
+
+<section class="section">
+  <h2>Beta</h2>
+  <p>Wildhold is in testing on TestFlight. It will be free to try, with one
+  purchase that unlocks the whole zoo. No ads, no accounts, no data
+  collected.</p>
+</section>
+
+<section class="section">
+  <h2>Support</h2>
+  <p>Questions, bugs, or a zoo that went wrong: email
+  <a href="mailto:wildhold@enkrata.dev">wildhold@enkrata.dev</a>, or use the
+  feedback button inside TestFlight. Say which device you play on and, if
+  you can, attach the saved zoo.</p>
+  <p>Purchases are handled by the store you bought from. To restore the
+  unlock on a new device, choose Restore on the unlock page in the game.</p>
+</section>
+
+<section class="section">
+  <h2>Press</h2>
+  <p>Wildhold is made by Enkrata, a small independent studio. For press
+  enquiries and review copies, email
+  <a href="mailto:press@enkrata.dev">press@enkrata.dev</a>.</p>
+  <ul>
+    <li><a href="/wildhold/art/key-art-3840x2160.png">Key art, 3840 &times; 2160</a></li>
+    <li><a href="/wildhold/art/key-art-1920x1080.png">Key art, 1920 &times; 1080</a></li>
+    <li><a href="/wildhold/art/logo-wordmark.png">Wordmark</a></li>
+    <li><a href="/wildhold/art/icon-1024.png">App icon, 1024</a></li>
+    <li><a href="/wildhold/art/animal-lineup.png">Animal lineup</a></li>
+  </ul>
+</section>
+
+<hr class="rule">
+<footer>
+  <p><a href="/wildhold/privacy.html">Privacy policy</a> &middot;
+  An <a href="/">Enkrata</a> game &middot; &copy; 2026 Enkrata</p>
+  {STAMP}
+</footer>
+"""
+
+# The Wildhold policy is referenced by App Store Connect once submitted, and
+# is legally operative from publication — change it only with a new date.
+wildhold_privacy_body = f"""
+<header class="masthead">
+  <a href="/" aria-label="Enkrata home">{lock_sm}</a>
+  <h1 class="title">Wildhold — Privacy Policy</h1>
+  <p class="date">Effective November 1, 2026</p>
+</header>
+
+<div class="prose">
+  <p>Wildhold is a game made by Enkrata. This policy covers the game on Mac,
+  iPad, iPhone and Steam.</p>
+  <p><strong>The short version: Wildhold collects nothing.</strong></p>
+</div>
+
+<section class="section">
+  <h2>What the game collects</h2>
+  <p>Nothing. Wildhold has no accounts, no sign-in, no advertising, no
+  analytics, no tracking, and no third-party SDKs. It does not send anything
+  over the internet.</p>
+</section>
+
+<section class="section">
+  <h2>What stays on your device</h2>
+  <p>The game keeps your current zoo and a few settings on your device. A zoo
+  you save to a file goes where you choose. Both are included in your normal
+  device backups, which are governed by your platform's privacy policy, not
+  ours. Deleting the game deletes what it kept.</p>
+</section>
+
+<section class="section">
+  <h2>Purchases</h2>
+  <p>If you buy the game or its unlock, the store you bought it from (the App
+  Store or Steam) handles the payment under its own privacy policy. We do not
+  receive your payment details or your identity.</p>
+</section>
+
+<section class="section">
+  <h2>TestFlight beta testing</h2>
+  <p>If you play Wildhold through TestFlight, Apple may share crash logs and
+  usage statistics with us, and anything you choose to send through
+  TestFlight's feedback tools (comments, screenshots) comes to us as you
+  submitted it. This collection is performed by Apple under the
+  <a href="https://www.apple.com/legal/internet-services/itunes/testflight/">TestFlight
+  terms</a>; we see it only to fix bugs and improve the game, and we don't
+  share it with anyone.</p>
+</section>
+
+<section class="section">
+  <h2>Children</h2>
+  <p>Wildhold collects no information from anyone, children included.</p>
+</section>
+
+<section class="section">
+  <h2>Changes</h2>
+  <p>If a future version ever needs to collect anything, this page will say
+  what and why before that version ships, the effective date above will
+  change, and the store's privacy label will change with it. No silent
+  revisions.</p>
+</section>
+
+<section class="section">
+  <h2>Contact</h2>
+  <p>Questions about this policy:
+  <a href="mailto:wildhold@enkrata.dev">wildhold@enkrata.dev</a></p>
+</section>
+
+<hr class="rule">
+<footer>
+  <p><a href="/wildhold/">Wildhold</a> &middot; An <a href="/">Enkrata</a>
+  game &middot; &copy; 2026 Enkrata</p>
+  {STAMP}
+</footer>
+"""
+
 pages = [
     ("index.html", page("Enkrata",
         "Enkrata is Kevin Holloway's development studio — games, productivity apps, and fitness projects.",
@@ -213,6 +364,12 @@ pages = [
     ("undercrew/privacy.html", page("Undercrew — Privacy Policy",
         "Undercrew collects no data. No accounts, no analytics, no tracking, no third-party SDKs.",
         "/undercrew/privacy.html", privacy_body)),
+    ("wildhold/index.html", page("Wildhold",
+        "Wildhold: a pixel-art zoo game for Mac, iPad and iPhone that you run like a ledger and a studbook.",
+        "/wildhold/", wildhold_body)),
+    ("wildhold/privacy.html", page("Wildhold — Privacy Policy",
+        "Wildhold collects no data. No accounts, no analytics, no tracking, no third-party SDKs.",
+        "/wildhold/privacy.html", wildhold_privacy_body)),
 ]
 
 for path, html in pages:
